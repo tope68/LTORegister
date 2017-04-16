@@ -31,7 +31,7 @@ class Ltoform extends Component {
 	    				<button type="submit" className="btn btn-raised btn-primary">Ment</button>
 	    				<div className="form-group label-floating">
     						<label htmlFor="222" className="control-label">number</label>
-    						<input className="form-control" id="222" type="number" min="1" max="23" />
+    						<input className="form-control" id="222" type="number" min={this.state.value} max="23" />
   						</div>
     				</form>
     			</div>
