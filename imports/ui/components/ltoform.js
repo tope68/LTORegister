@@ -7,6 +7,9 @@ class Ltoform extends Component {
     	this.state={value: '1'};
     }
 
+    test(){
+    	console.log('x');
+    }
 
 	Rogzites(event){
 		event.preventDefault();
