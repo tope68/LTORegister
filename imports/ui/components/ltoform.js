@@ -16,6 +16,14 @@ class Ltoform extends Component {
 		var ltoa=this.state.ltoaszama;
 		var ltob=this.state.ltobszama;
 		console.log(ltoa,ltob);
+		Meteor.call('addRegister', {ltoa, ltob}, (error, result)=> {
+			if (error) {
+				alert('Valami hiba van');
+			} else {
+				this.state.ltoaszama= '1',
+				this.state.ltobszama= '4';
+			}
+		});
 	}
 
 	ActValue(event) {
