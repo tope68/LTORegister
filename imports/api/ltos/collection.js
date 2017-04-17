@@ -7,7 +7,7 @@ const LTOsSchema = new SimpleSchema ({
 	actualDate: {
 		type: Date,
 		autoValue: function () {
-			 return new Date();
+			return new Date();
 		}
 	},
 	ltoAnumber: {
@@ -23,7 +23,11 @@ const LTOsSchema = new SimpleSchema ({
 	changeDate: {
 		type: Date,
 		autoValue: function () {
-			 return new Date();
+			if (this.isInsert) {
+				return new Date();
+			} else {
+				this.unset();
+			}
 		}
 	},	
 	changeBy: {
