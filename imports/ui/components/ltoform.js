@@ -17,7 +17,7 @@ class Ltoform extends Component {
 		console.log(ltoa,ltob);
 		Meteor.call('addRegister', {ltoa, ltob}, (error, result)=> {
 			if (error) {
-				console.log(error.reason),
+				console.log(error.message),
 				console.log(error.details)
 				if	(result)
 					console.log(result);
@@ -41,7 +41,7 @@ class Ltoform extends Component {
     			<div>
     				<h1>Rögzítés</h1>
     				<form className="form-horizontal" onSubmit={this.Rogzites.bind(this)}>
-	    				<select name="ltoaszama" value={this.state.value} onChange={this.ActValue.bind(this)} className="form-control">
+    					<select name="ltoaszama" value={this.state.value} onChange={this.ActValue.bind(this)} className="form-control">
 	    					<option value="1">1</option>
 	    					<option value="2">2</option>
 	    					<option value="3">3</option>

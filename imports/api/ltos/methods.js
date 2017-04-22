@@ -1,5 +1,5 @@
 import {Meteor} from 'meteor/meteor';
-import LTOs from './collection';
+import LTOs from './collection.js';
 
 Meteor.methods({
 	addRegister: ({ltoa, ltob}) => {
@@ -10,6 +10,7 @@ Meteor.methods({
       		throw new Meteor.Error('not-authorized'); */
     },
 
+<<<<<<< HEAD
     'LTOs.insert': () => {
         return {
         	actualDate: new Date(),
@@ -18,5 +19,14 @@ Meteor.methods({
         	// user: Meteor.userId()
         } 
     }
+=======
+    return LTOs.insert({
+    	actualDate: new Date(),
+    	ltoAnumber: ltoa,
+    	ltoBnumber: ltob,
+    	status: 'Aktív',
+    	// user: Meteor.userId()
+    });
+>>>>>>> a5430e43c238b1f962b784ad8bf7ce36e4d4ca23
  
 });
