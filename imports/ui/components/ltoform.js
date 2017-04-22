@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class Ltoform extends Component {
     constructor(props){
     	super(props);
@@ -18,7 +17,10 @@ class Ltoform extends Component {
 		console.log(ltoa,ltob);
 		Meteor.call('addRegister', {ltoa, ltob}, (error, result)=> {
 			if (error) {
-				alert('Valami hiba van');
+				console.log(error.reason),
+				console.log(error.details)
+				if	(result)
+					console.log(result);
 			} else {
 				this.state.ltoaszama= '1',
 				this.state.ltobszama= '4';
