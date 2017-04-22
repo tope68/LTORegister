@@ -1,5 +1,5 @@
 import {Meteor} from 'meteor/meteor';
-import LTOs from './collection';
+import LTOs from './collection.js';
 
 Meteor.methods({
 	addRegister({ltoa, ltob}) {
@@ -14,6 +14,7 @@ Meteor.methods({
     	actualDate: new Date(),
     	ltoAnumber: ltoa,
     	ltoBnumber: ltob,
+    	status: 'Aktív',
     	// user: Meteor.userId()
     });
  
