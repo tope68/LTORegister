@@ -9,7 +9,7 @@ class Ltolist extends Component {
         return (
             <div>
             	<h2>Lista</h2>
-            	
+            	{console.log(ltos.find().fetch())}
             </div>
    )}
 }
