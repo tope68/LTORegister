@@ -5,12 +5,15 @@ import {Meteor} from 'meteor/meteor';
 
 import Mainlayout from '../../ui/layouts/mainlayout.js';
 import Ltoform from '../../ui/components/ltoform.js';
+import Ltolist from '../../ui/components/ltolist.js';
 
 Meteor.startup(()=>{
 	render(
 		<Router history={ browserHistory }>
 			<Route path="/" component={Mainlayout}>
+				
 				<Route path="/ltoform" component={Ltoform}/>
+				<Route path="/ltolist" component={Ltolist}/>
 			</Route>
 		</Router>,
 		document.getElementById('render-target')

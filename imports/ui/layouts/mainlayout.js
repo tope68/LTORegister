@@ -1,4 +1,5 @@
 import React from 'react';
+import { IndexLink, Link } from 'react-router';
 
 const Mainlayout=({children})=>(
 	<div>
@@ -6,11 +7,14 @@ const Mainlayout=({children})=>(
 			<div className="container">
 				<a className="navbar-brand" href="#">céglogo</a>
 				<ul className="nav navbar-nav">
-					<li className="active">
-						<a href="/ltoform">LTO lista</a>
+					<li>
+						<IndexLink to="/" activeClassName="active">Home</IndexLink>
 					</li>
 					<li>
-						<a href="/">menü2</a>
+						<Link to="/ltoform" activeClassName="active">LTO rögzítés</Link>
+					</li>
+					<li>
+						<Link to="/ltolist" activeClassName="active">LTO lista</Link>
 					</li>
 				</ul>
 			</div>
