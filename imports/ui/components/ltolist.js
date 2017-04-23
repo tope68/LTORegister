@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import LTOs from '../../api/ltos/collection.js';
 
 class Ltolist extends Component {
     constructor(props) {
@@ -9,7 +10,7 @@ class Ltolist extends Component {
         return (
             <div>
             	<h2>Lista</h2>
-            	{console.log(ltos.find().fetch())}
+            	{console.log(LTOs.find({}).fetch())}
             </div>
    )}
 }
