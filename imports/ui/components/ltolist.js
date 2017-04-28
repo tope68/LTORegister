@@ -21,7 +21,7 @@ class Ltolist extends Component {
 				{console.log(dataArray)}
 
                	<BootstrapTable data={ dataArray }>
-			        <TableHeaderColumn dataField='id' isKey>ID</TableHeaderColumn>
+			        <TableHeaderColumn dataField='_id' isKey>ID</TableHeaderColumn>
 			        <TableHeaderColumn dataField='actualDate'>Dátum</TableHeaderColumn>
 			        <TableHeaderColumn dataField='ltoAnumber'>LTO-A</TableHeaderColumn>
 			        <TableHeaderColumn dataField='ltoBnumber'>LTO-B</TableHeaderColumn>
