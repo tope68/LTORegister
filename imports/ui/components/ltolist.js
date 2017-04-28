@@ -22,21 +22,28 @@ class Ltolist extends Component {
 
 			dateFormatTime = (cell,row)=> {
         		return cell=(moment(cell).format('YYYY.MM.DD, HH:mm'))
-        	};        	
+        	};
+
+        	const cellEditProp = {
+  				mode: 'click',
+  				blurToSave: true
+			};        	
+
+			const ltoNumbers=['1','2','3','4','5','6','7','8','9','10','11'];
         	
         return (
         	<div>
             	<h2>Lista</h2>
 				{console.log(dataArray)}
 
-               	<BootstrapTable data={ dataArray }>
-			        <TableHeaderColumn dataField='_id' isKey>ID</TableHeaderColumn>
-			        <TableHeaderColumn dataField='actualDate' dataFormat={ dateFormatDate }>Dátum</TableHeaderColumn>
-			        <TableHeaderColumn dataField='ltoAnumber' width='90'>LTO-A</TableHeaderColumn>
-			        <TableHeaderColumn dataField='ltoBnumber' width='90'>LTO-B</TableHeaderColumn>
+               	<BootstrapTable data={ dataArray } cellEdit={ cellEditProp }>
+			        <TableHeaderColumn dataField='_id' isKey hidden>ID</TableHeaderColumn>
+			        <TableHeaderColumn dataField='actualDate' dataFormat={ dateFormatDate } editable={false}>Dátum</TableHeaderColumn>
+			        <TableHeaderColumn dataField='ltoAnumber' editable={ { type: 'select', options: { values: ltoNumbers } } } width='90'>LTO-A</TableHeaderColumn>
+			        <TableHeaderColumn dataField='ltoBnumber' editable={ { type: 'select', options: { values: ltoNumbers } } } width='90'>LTO-B</TableHeaderColumn>
 			        <TableHeaderColumn dataField='status'>Státusz</TableHeaderColumn>
 			        <TableHeaderColumn dataField='changeBy'>User</TableHeaderColumn>
-			        <TableHeaderColumn dataField='changeDate' dataFormat={ dateFormatTime }>Csere Dátuma</TableHeaderColumn>
+			        <TableHeaderColumn dataField='changeDate' dataFormat={ dateFormatTime } editable={false}>Csere Dátuma</TableHeaderColumn>
 				</BootstrapTable>	
 
             	<ul>
