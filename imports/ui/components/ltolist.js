@@ -30,13 +30,18 @@ class Ltolist extends Component {
 			};        	
 
 			const ltoNumbers=['1','2','3','4','5','6','7','8','9','10','11'];
+
+			const options = {
+  				clearSearch: true,
+  				searchPosition: 'right',
+  			};
         	
         return (
         	<div>
             	<h2>Lista</h2>
 				{console.log(dataArray)}
 
-               	<BootstrapTable data={ dataArray } cellEdit={ cellEditProp }>
+               	<BootstrapTable data={ dataArray } cellEdit={ cellEditProp } search options={ options }>
 			        <TableHeaderColumn dataField='_id' isKey hidden>ID</TableHeaderColumn>
 			        <TableHeaderColumn dataField='actualDate' dataFormat={ dateFormatDate } editable={false}>Dátum</TableHeaderColumn>
 			        <TableHeaderColumn dataField='ltoAnumber' editable={ { type: 'select', options: { values: ltoNumbers } } } width='90'>LTO-A</TableHeaderColumn>
