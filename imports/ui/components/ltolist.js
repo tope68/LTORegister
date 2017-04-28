@@ -12,9 +12,18 @@ class Ltolist extends Component {
     }
 
         render() {
-        	const dataArray=[this.ltodatas().map((ltodata)=>{
+        	const dataArray=this.ltodatas().map((ltodata)=>{
         		return ltodata
-        	})];
+        	});
+
+        	dateFormatDate = (cell,row)=> {
+        		return cell=(moment(cell).format('YYYY.MM.DD'))
+        	};
+
+			dateFormatTime = (cell,row)=> {
+        		return cell=(moment(cell).format('YYYY.MM.DD, HH:mm'))
+        	};        	
+        	
         return (
         	<div>
             	<h2>Lista</h2>
@@ -22,22 +31,22 @@ class Ltolist extends Component {
 
                	<BootstrapTable data={ dataArray }>
 			        <TableHeaderColumn dataField='_id' isKey>ID</TableHeaderColumn>
-			        <TableHeaderColumn dataField='actualDate'>Dátum</TableHeaderColumn>
-			        <TableHeaderColumn dataField='ltoAnumber'>LTO-A</TableHeaderColumn>
-			        <TableHeaderColumn dataField='ltoBnumber'>LTO-B</TableHeaderColumn>
+			        <TableHeaderColumn dataField='actualDate' dataFormat={ dateFormatDate }>Dátum</TableHeaderColumn>
+			        <TableHeaderColumn dataField='ltoAnumber' width='90'>LTO-A</TableHeaderColumn>
+			        <TableHeaderColumn dataField='ltoBnumber' width='90'>LTO-B</TableHeaderColumn>
 			        <TableHeaderColumn dataField='status'>Státusz</TableHeaderColumn>
 			        <TableHeaderColumn dataField='changeBy'>User</TableHeaderColumn>
-			        <TableHeaderColumn dataField='changeDate'>Csere Dátuma</TableHeaderColumn>
+			        <TableHeaderColumn dataField='changeDate' dataFormat={ dateFormatTime }>Csere Dátuma</TableHeaderColumn>
 				</BootstrapTable>	
 
             	<ul>
             		{this.ltodatas().map((ltodata) => {
             			return <li key={ltodata._id}>
-            						{actualdate=moment(ltodata.actualDate).format('YYYY.MM.DD')}
-            						{ltoanumber=ltodata.ltoAnumber}
-            						{ltobnumber=ltodata.ltoBnumber}
-            						{ltostatus=ltodata.status}
-            						{actualuser=ltodata.changeBy}
+            						{actualdate=moment(ltodata.actualDate).format('YYYY.MM.DD')} - 
+            						{ltoanumber=ltodata.ltoAnumber} - 
+            						{ltobnumber=ltodata.ltoBnumber} - 
+            						{ltostatus=ltodata.status} - 
+            						{actualuser=ltodata.changeBy} - 
             						{changedate=moment(ltodata.changeDate).format('YYYY.MM.DD, HH:mm')}
             					</li>
                		})}
