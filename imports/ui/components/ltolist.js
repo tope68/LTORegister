@@ -16,7 +16,7 @@ class Ltolist extends Component {
     }
 
     actionButton(cell,row,enumObject,rowIndex){
-    	return (<button type="button" onClick={()=>this.onClickActionButton(cell,row,rowIndex)}>Csere{rowIndex}</button>)
+    	return (<button type="button" className="btn btn-raised btn-primary" onClick={()=>this.onClickActionButton(cell,row,rowIndex)}>Csere</button>)
     }
 
         render() {
