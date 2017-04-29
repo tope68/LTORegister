@@ -12,11 +12,22 @@ class Ltolist extends Component {
     }
 
 	onClickActionButton(cell,row,rowIndex){
-    	console.log(cell,row,rowIndex)
+		alert('Egy modal ablak kell majd a kazettaszmáokkal.');
+    	console.log(row.ltoAnumber, row.ltoBnumber, row.status, row.actualDate)
     }
 
     actionButton(cell,row,enumObject,rowIndex){
-    	return (<button type="button" className="btn btn-raised btn-primary" onClick={()=>this.onClickActionButton(cell,row,rowIndex)}>Csere</button>)
+    	console.log(row.ltoAnumber, row.ltoBnumber, row.status, row.changeBy)
+    	if (row.status='Lezárt') {
+    		actualclassName="btn btn-raised btn-danger"
+    	} else {
+    		actualclassName="btn btn-raised btn-primary"
+    	}
+    	return (<button type="button"
+    				//	className="btn btn-raised btn-primary"
+    					className={actualclassName}
+    					onClick={()=>this.onClickActionButton(cell,row,rowIndex)}>
+    					Csere</button>)
     }
 
         render() {
@@ -50,14 +61,14 @@ class Ltolist extends Component {
             	<h2>Lista</h2>
 				{console.log(dataArray)}
 
-               	<BootstrapTable data={ dataArray } cellEdit={ cellEditProp } search options={ options }>
+               	<BootstrapTable data={ dataArray } cellEdit={ cellEditProp } search searchPlaceholder='Keresés...' options={ options }>
 			        <TableHeaderColumn dataField='_id' isKey hidden>ID</TableHeaderColumn>
 			        <TableHeaderColumn dataField='actualDate' dataFormat={ dateFormatDate } editable={false}>Dátum</TableHeaderColumn>
 			        <TableHeaderColumn dataField='ltoAnumber' editable={ { type: 'select', options: { values: ltoNumbers } } } width='90'>LTO-A</TableHeaderColumn>
 			        <TableHeaderColumn dataField='ltoBnumber' editable={ { type: 'select', options: { values: ltoNumbers } } } width='90'>LTO-B</TableHeaderColumn>
 			        <TableHeaderColumn dataField='status'>Státusz</TableHeaderColumn>
 			        <TableHeaderColumn dataField='changeBy'>User</TableHeaderColumn>
-			        <TableHeaderColumn dataField='changeDate' dataFormat={ dateFormatTime } editable={false}>Csere Dátuma</TableHeaderColumn>
+			        <TableHeaderColumn dataField='changeDate' dataFormat={ dateFormatTime } editable={false}>Csere Időpontja</TableHeaderColumn>
 			        <TableHeaderColumn dataField='button' dataFormat={this.actionButton.bind(this)} editable={false}></TableHeaderColumn>
       			</BootstrapTable>	
 
@@ -72,7 +83,7 @@ class Ltolist extends Component {
             						{changedate=moment(ltodata.changeDate).format('YYYY.MM.DD, HH:mm')}
             					</li>
                		})}
-               	</ul> 
+               	</ul>
             </div>
    )}
 }
