@@ -16,18 +16,27 @@ class Ltolist extends Component {
     	console.log(row.ltoAnumber, row.ltoBnumber, row.status, row.actualDate)
     }
 
+    onClickChangeAction(row){
+    	alert('Ez a módosításra ad lehetőséget');
+    }
+
     actionButton(cell,row,enumObject,rowIndex){
     	console.log(row.ltoAnumber, row.ltoBnumber, row.status, row.changeBy)
-    	if (row.status='Lezárt') {
-    		actualclassName="btn btn-raised btn-danger"
+    	if (row.status=='Lezárt') {
+    		actualclassName="btn btn-raised btn-danger";
+    		buttontext='Lezárva';
+    		isDisabled=true;
     	} else {
-    		actualclassName="btn btn-raised btn-primary"
+    		actualclassName="btn btn-raised btn-primary";
+    		buttontext='Csere';
+    		isDisabled=false
     	}
     	return (<button type="button"
     				//	className="btn btn-raised btn-primary"
     					className={actualclassName}
-    					onClick={()=>this.onClickActionButton(cell,row,rowIndex)}>
-    					Csere</button>)
+    					onClick={()=>this.onClickActionButton(cell,row,rowIndex)}
+    					disabled={isDisabled}>
+    					{buttontext}</button>)
     }
 
         render() {
