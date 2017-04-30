@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
 
 class Ltoform extends Component {
     constructor(props){
@@ -15,15 +16,14 @@ class Ltoform extends Component {
 		var ltoa=this.state.ltoaszama;
 		var ltob=this.state.ltobszama;
 		console.log(ltoa,ltob);
-		Meteor.call('addRegister', {ltoa, ltob}, (error, result)=> {
+		Meteor.call('addRegister', this.state, (error, result)=> {
 			if (error) {
 				console.log(error.message),
 				console.log(error.details)
 				if	(result)
 					console.log(result);
 			} else {
-				this.state.ltoaszama= '1',
-				this.state.ltobszama= '4';
+				browserHistory.push('/ltolist');
 			}
 		});
 	}
@@ -45,11 +45,19 @@ class Ltoform extends Component {
 	    					<option value="1">1</option>
 	    					<option value="2">2</option>
 	    					<option value="3">3</option>
-	    				</select>
-	    				<select name="ltobszama" value={this.state.value} onChange={this.ActValue.bind(this)} className="form-control">
 	    					<option value="4">4</option>
 	    					<option value="5">5</option>
 	    					<option value="6">6</option>
+	    					<option value="7">7</option>
+	    				</select>
+	    				<select name="ltobszama" value={this.state.value} onChange={this.ActValue.bind(this)} className="form-control">
+	    					<option value="1">1</option>
+	    					<option value="2">2</option>
+	    					<option value="3">3</option>
+	    					<option value="4">4</option>
+	    					<option value="5">5</option>
+	    					<option value="6">6</option>
+	    					<option value="7">7</option>
 	    				</select>
 	    				<button type="submit" className="btn btn-raised btn-primary">Ment</button>
 	    			</form>
