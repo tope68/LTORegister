@@ -12,7 +12,7 @@ class Ltolist extends Component {
     	return LTOs.find().fetch();
     }
 
-	onClickActionButton(cell,row,rowIndex,e){
+	onClickActionButton(row,e){
         if (e.target.getAttribute('data-btnstatus') == 'disabled'){
             e.preventDefault();
             e.stopPropagation();
@@ -20,16 +20,13 @@ class Ltolist extends Component {
         }
         // browserHistory.push('/ltochange/'+row.ltoAnumber+'/'+row.ltoBnumber);
         browserHistory.push(`/ltochange/${row.ltoAnumber}/${row.ltoBnumber}/${row._id}`);
-		// alert('Egy modal ablak kell majd a kazettaszmáokkal.');
-  //   	console.log(row.ltoAnumber, row.ltoBnumber, row.status, row.actualDate)
-    	// <Link to="/ltochange" params={params:{this.props.row.ltoAnumber, this.props.row.ltoBnumber}}></Link>
     }
 
     onClickChangeAction(row){
     	alert('Ez a módosításra ad lehetőséget');
     }
 
-    actionButton(cell,row,enumObject,rowIndex){
+    actionButton(row){
     	console.log(row.ltoAnumber, row.ltoBnumber, row.status, row.changeBy)
     	if (row.status=='Lezárt') {
     		actualclassName="btn btn-raised btn-danger disabled";
@@ -41,7 +38,6 @@ class Ltolist extends Component {
     		btnStatus='enabled'
     	}
     	return (<button type="button"
-    				//	className="btn btn-raised btn-primary"
     					className={actualclassName}
     					onClick={(e)=>this.onClickActionButton(cell,row,rowIndex,e)}
     					data-btnstatus={btnStatus} >
@@ -65,8 +61,8 @@ class Ltolist extends Component {
   				mode: 'click',
   				blurToSave: true
 			};        	
-			// A lehetséges kazettaszámok még tesztként csak	
-			const ltoNumbers=['1','2','3','4','5','6','7','8','9','10','11'];
+			// A lehetséges kazettaszámok még tesztként csak de nem kell ha db-ből van adat	
+			//const ltoNumbers=['1','2','3','4','5','6','7','8','9','10','11'];
 			// a kereső mező paraméterei
 			const options = {
   				clearSearch: true,
@@ -82,8 +78,8 @@ class Ltolist extends Component {
                	<BootstrapTable data={ dataArray } cellEdit={ cellEditProp } search searchPlaceholder='Keresés...' options={ options }>
 			        <TableHeaderColumn dataField='_id' isKey hidden>ID</TableHeaderColumn>
 			        <TableHeaderColumn dataField='actualDate' dataFormat={ dateFormatDate } editable={false}>Dátum</TableHeaderColumn>
-			        <TableHeaderColumn dataField='ltoAnumber' editable={ { type: 'select', options: { values: ltoNumbers } } } width='90'>LTO-A</TableHeaderColumn>
-			        <TableHeaderColumn dataField='ltoBnumber' editable={ { type: 'select', options: { values: ltoNumbers } } } width='90'>LTO-B</TableHeaderColumn>
+			        <TableHeaderColumn dataField='ltoAnumber' width='90'>LTO-A</TableHeaderColumn>
+			        <TableHeaderColumn dataField='ltoBnumber' width='90'>LTO-B</TableHeaderColumn>
 			        <TableHeaderColumn dataField='status'>Státusz</TableHeaderColumn>
 			        <TableHeaderColumn dataField='changeBy'>User</TableHeaderColumn>
 			        <TableHeaderColumn dataField='changeDate' dataFormat={ dateFormatTime } editable={false}>Csere Időpontja</TableHeaderColumn>

@@ -4,25 +4,17 @@ import { browserHistory } from 'react-router';
 
 class Ltochange extends Component {
     constructor(props) {
-        // console.log(props);
         super(props);
         this.state={
           ltoaszama: (parseInt(props.params.ltoa)==23) ? 1 : parseInt(props.params.ltoa)+1,
           ltobszama: (parseInt(props.params.ltob)==23) ? 1 : parseInt(props.params.ltob)+1,
           oldid:props.params.oldid
-    		};
-    // console.log(props.row);
+    	};
     }
 
 
    AddRecord(event){
-
     event.preventDefault();
-    // var ltoa=this.state.ltoaszama;
-    // var ltob=this.state.ltobszama;
-    // console.log(ltoa,ltob);
-    // console.log(this.state);
-    // return;
     Meteor.call('addRegister', this.state, (error, result)=> {
       if (error) {
         console.log(error.message),
