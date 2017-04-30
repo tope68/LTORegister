@@ -41,10 +41,10 @@ class Ltochange extends Component {
  	  			<h1>Napi csere rögzítése</h1>
     			<form className="form-horizontal">
     				<select name="ltoaszama" value={this.state.ltoaszama} onChange={this.NewValue.bind(this)} className="form-control">
-              {Array(23).fill().map((_, i) => {return (<option value={i+1}>{i+1}</option>)} ) }
+              			{Array(23).fill().map((_, i) => {return (<option value={i+1}>{i+1}</option>)} ) }
 	    			</select>
 	    			<select name="ltobszama" value={this.state.ltobszama} onChange={this.NewValue.bind(this)} className="form-control">
-              {Array(23).fill().map((_, i) => {return (<option value={i+1}>{i+1}</option>)} ) }
+              			{Array(23).fill().map((_, j) => {return (<option value={j+1}>{j+1}</option>)} ) }
 	    			</select>
 	    			<button type="submit" onClick={this.AddRecord.bind(this)} className="btn btn-raised btn-primary">Rögzít</button>
 	    		</form>

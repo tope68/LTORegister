@@ -12,7 +12,7 @@ class Ltolist extends Component {
     	return LTOs.find().fetch();
     }
 
-	onClickActionButton(row,e){
+	onClickActionButton(cell,row,e){
         if (e.target.getAttribute('data-btnstatus') == 'disabled'){
             e.preventDefault();
             e.stopPropagation();
@@ -22,11 +22,7 @@ class Ltolist extends Component {
         browserHistory.push(`/ltochange/${row.ltoAnumber}/${row.ltoBnumber}/${row._id}`);
     }
 
-    onClickChangeAction(row){
-    	alert('Ez a módosításra ad lehetőséget');
-    }
-
-    actionButton(row){
+    actionButton(cell,row,enumObject){
     	console.log(row.ltoAnumber, row.ltoBnumber, row.status, row.changeBy)
     	if (row.status=='Lezárt') {
     		actualclassName="btn btn-raised btn-danger disabled";
@@ -39,7 +35,7 @@ class Ltolist extends Component {
     	}
     	return (<button type="button"
     					className={actualclassName}
-    					onClick={(e)=>this.onClickActionButton(cell,row,rowIndex,e)}
+    					onClick={(e)=>this.onClickActionButton(cell,row,e)}
     					data-btnstatus={btnStatus} >
     					{buttontext}</button>)
     }

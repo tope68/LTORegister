@@ -16,6 +16,9 @@ const Mainlayout=({children})=>(
 					<li>
 						<Link to="/ltolist" activeClassName="active">LTO lista</Link>
 					</li>
+					<li>
+						<Link to="/loginpage" activeClassName="active">Belépés (teszt)</Link>
+					</li>
 				</ul>
 			</div>
 		</nav>
