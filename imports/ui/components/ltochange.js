@@ -3,13 +3,21 @@ import React, { Component, PropTypes } from 'react';
 class Ltochange extends Component {
         constructor(props) {
         super(props);
+        this.state={
+    		ltoaszama: {this.props.row.ltoAnumber},
+    		ltobszama: {this.props.row.ltoBnumber},
+    		};
     }
 
+    console.log(this.props.row);
+
    addRecord(evet){
+   	event.preventDefault();
 
    }
 
    newValue(event){
+   	event.preventDefault();
 
    }
 
@@ -18,7 +26,7 @@ class Ltochange extends Component {
             <div>
  	  			<h1>Napi csere rögzítése</h1>
     			<form className="form-horizontal" onSubmit={this.addRecord.bind(this)}>
-    				<select name="ltoaszama" value={this.props.value} onChange={this.newValue.bind(this)} className="form-control">
+    				<select name="ltoaszama" value={this.state.value} onChange={this.newValue.bind(this)} className="form-control">
 	    				<option value="1">1</option>
 	    				<option value="2">2</option>
 	    				<option value="3">3</option>
@@ -31,7 +39,7 @@ class Ltochange extends Component {
 						<option value="10">10</option>
 						<option value="11">11</option>
 	    			</select>
-	    			<select name="ltobszama" value={this.props.value} onChange={this.newValue.bind(this)} className="form-control">
+	    			<select name="ltobszama" value={this.state.value} onChange={this.newValue.bind(this)} className="form-control">
 	    				<option value="1">1</option>
 	    				<option value="2">2</option>
 	    				<option value="3">3</option>
