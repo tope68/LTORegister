@@ -14,6 +14,7 @@ class Ltolist extends Component {
 	onClickActionButton(cell,row,rowIndex){
 		alert('Egy modal ablak kell majd a kazettaszmáokkal.');
     	console.log(row.ltoAnumber, row.ltoBnumber, row.status, row.actualDate)
+    	// <Link to="/ltochange" params={params:{this.props.row.ltoAnumber, this.props.row.ltoBnumber}}></Link>
     }
 
     onClickChangeAction(row){
