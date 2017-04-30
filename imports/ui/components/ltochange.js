@@ -1,58 +1,60 @@
 import React, { Component, PropTypes } from 'react';
+import { browserHistory } from 'react-router';
+
 
 class Ltochange extends Component {
-        constructor(props) {
+    constructor(props) {
+        // console.log(props);
         super(props);
         this.state={
-    		ltoaszama: {this.props.row.ltoAnumber},
-    		ltobszama: {this.props.row.ltoBnumber},
+          ltoaszama: (parseInt(props.params.ltoa)==23) ? 1 : parseInt(props.params.ltoa)+1,
+          ltobszama: (parseInt(props.params.ltob)==23) ? 1 : parseInt(props.params.ltob)+1,
+          oldid:props.params.oldid
     		};
+    // console.log(props.row);
     }
 
-    console.log(this.props.row);
 
-   addRecord(evet){
-   	event.preventDefault();
+   AddRecord(event){
 
+    event.preventDefault();
+    // var ltoa=this.state.ltoaszama;
+    // var ltob=this.state.ltobszama;
+    // console.log(ltoa,ltob);
+    // console.log(this.state);
+    // return;
+    Meteor.call('addRegister', this.state, (error, result)=> {
+      if (error) {
+        console.log(error.message),
+        console.log(error.details)
+        if  (result)
+          console.log(result);
+      } else {
+        // go(-1): bongeszo elozmenyekben visszalepunk, mert akkor nem szemeteljuk tele a history-t
+        browserHistory.push('/ltolist');
+      }
+    });
    }
 
-   newValue(event){
-   	event.preventDefault();
-
+   NewValue(event){
+    console.log(event);
+    var value = event.target.value;
+    console.log(value);
+    this.setState({ [event.target.name] :value})
    }
 
     render() {
         return (
             <div>
  	  			<h1>Napi csere rögzítése</h1>
-    			<form className="form-horizontal" onSubmit={this.addRecord.bind(this)}>
-    				<select name="ltoaszama" value={this.state.value} onChange={this.newValue.bind(this)} className="form-control">
-	    				<option value="1">1</option>
-	    				<option value="2">2</option>
-	    				<option value="3">3</option>
-	    				<option value="4">4</option>
-						<option value="5">5</option>
-						<option value="6">6</option>
-						<option value="7">7</option>
-						<option value="8">8</option>
-						<option value="9">9</option>
-						<option value="10">10</option>
-						<option value="11">11</option>
+    			<form className="form-horizontal">
+    				<select name="ltoaszama" value={this.state.ltoaszama} onChange={this.NewValue.bind(this)} className="form-control">
+              {Array(23).fill().map((_, i) => {return (<option value={i+1}>{i+1}</option>)} ) }
 	    			</select>
-	    			<select name="ltobszama" value={this.state.value} onChange={this.newValue.bind(this)} className="form-control">
-	    				<option value="1">1</option>
-	    				<option value="2">2</option>
-	    				<option value="3">3</option>
-	    				<option value="4">4</option>
-						<option value="5">5</option>
-						<option value="6">6</option>
-						<option value="7">7</option>
-						<option value="8">8</option>
-						<option value="9">9</option>
-						<option value="10">10</option>
-						<option value="11">11</option>
+	    			<select name="ltobszama" value={this.state.ltobszama} onChange={this.NewValue.bind(this)} className="form-control">
+              {Array(23).fill().map((_, i) => {return (<option value={i+1}>{i+1}</option>)} ) }
 	    			</select>
-	    			<button type="submit" className="btn btn-raised btn-primary">Rögzít</button>
+	    			<button type="submit" onClick={this.AddRecord.bind(this)} className="btn btn-raised btn-primary">Rögzít</button>
 	    		</form>
     		</div>
 		);

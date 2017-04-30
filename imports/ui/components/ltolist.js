@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LTOs from '../../api/ltos/collection.js';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+import { browserHistory } from 'react-router';
 
 class Ltolist extends Component {
     constructor(props) {
@@ -11,9 +12,16 @@ class Ltolist extends Component {
     	return LTOs.find().fetch();
     }
 
-	onClickActionButton(cell,row,rowIndex){
-		alert('Egy modal ablak kell majd a kazettaszmáokkal.');
-    	console.log(row.ltoAnumber, row.ltoBnumber, row.status, row.actualDate)
+	onClickActionButton(cell,row,rowIndex,e){
+        if (e.target.getAttribute('data-btnstatus') == 'disabled'){
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+        }
+        // browserHistory.push('/ltochange/'+row.ltoAnumber+'/'+row.ltoBnumber);
+        browserHistory.push(`/ltochange/${row.ltoAnumber}/${row.ltoBnumber}/${row._id}`);
+		// alert('Egy modal ablak kell majd a kazettaszmáokkal.');
+  //   	console.log(row.ltoAnumber, row.ltoBnumber, row.status, row.actualDate)
     	// <Link to="/ltochange" params={params:{this.props.row.ltoAnumber, this.props.row.ltoBnumber}}></Link>
     }
 
@@ -24,19 +32,19 @@ class Ltolist extends Component {
     actionButton(cell,row,enumObject,rowIndex){
     	console.log(row.ltoAnumber, row.ltoBnumber, row.status, row.changeBy)
     	if (row.status=='Lezárt') {
-    		actualclassName="btn btn-raised btn-danger";
+    		actualclassName="btn btn-raised btn-danger disabled";
     		buttontext='Lezárva';
-    		isDisabled=true;
+    		btnStatus='disabled';
     	} else {
     		actualclassName="btn btn-raised btn-primary";
     		buttontext='Csere';
-    		isDisabled=false
+    		btnStatus='enabled'
     	}
     	return (<button type="button"
     				//	className="btn btn-raised btn-primary"
     					className={actualclassName}
-    					onClick={()=>this.onClickActionButton(cell,row,rowIndex)}
-    					disabled={isDisabled}>
+    					onClick={(e)=>this.onClickActionButton(cell,row,rowIndex,e)}
+    					data-btnstatus={btnStatus} >
     					{buttontext}</button>)
     }
 
