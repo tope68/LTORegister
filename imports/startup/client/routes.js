@@ -14,11 +14,11 @@ Meteor.startup(()=>{
 	render(
 		<Router history={ browserHistory }>
 			<Route path="/" component={Mainlayout}>
-				<Route path="/loginpage" component={Login}/>
-				<Route path="/signuppage" component={Signup}/>
-				<Route path="/ltoform" component={Ltoform}/>
-				<Route path="/ltolist" component={Ltolist}/>
-				<Route path="/ltochange/:ltoa/:ltob/:oldid" component={Ltochange}/>
+				<Route path="loginpage" component={Login}/>
+				<Route path="signuppage" component={Signup}/>
+				<Route path="ltoform" component={Ltoform}/>
+				<Route path="ltolist" component={Ltolist}/>
+				<Route path="ltochange/:ltoa/:ltob/:oldid" component={Ltochange}/>
 			</Route>
 		</Router>,
 		document.getElementById('render-target')
