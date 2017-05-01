@@ -14,7 +14,7 @@ class Login extends Component {
 		  // onSignedInHook: () => browserHistory.push('/ltolist'),
 		  // onSignedOutHook: () => browserHistory.push('/loginpage'),
 		  minimumPasswordLength: 5
-		)};
+		});
 	}
 
     render() {
